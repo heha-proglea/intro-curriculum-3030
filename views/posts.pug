@@ -25,8 +25,11 @@ html(lang="ja")
             if isPostedByAdmin
              span #{post.id} : 管理人 ★
             else
+              //- span #{post.id} : ID:#{post.trackingCookie}
+              //- トラッキングIDの表示(セッション固定化攻撃対策に使用したハッシュ値部分は除いて表示する)
               - var originalTrackingId = post.trackingCookie ? post.trackingCookie.split('_')[0] : ''
-              span #{post.id} : ID:#{originalTrackingId}   
+              span #{post.id} : ID:#{originalTrackingId}
+
         div.card-body
           p(style="white-space:pre; overflow:auto;") #{post.content}
         div.card-footer
